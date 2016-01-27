@@ -1,7 +1,6 @@
 package pl.spring.demo.common;
 
 import pl.spring.demo.to.IdAware;
-
 import java.util.Collection;
 
 public class Sequence {

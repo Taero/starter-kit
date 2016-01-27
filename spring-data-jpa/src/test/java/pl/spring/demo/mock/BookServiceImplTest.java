@@ -7,7 +7,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import pl.spring.demo.dao.BookDao;
+import pl.spring.demo.mapper.MapperToEntityTo;
 import pl.spring.demo.service.impl.BookServiceImpl;
+import pl.spring.demo.to.BookEntity;
 import pl.spring.demo.to.BookTo;
 
 import static org.junit.Assert.assertEquals;
@@ -27,10 +29,11 @@ public class BookServiceImplTest {
     @Test
     public void testShouldSaveBook() {
         // given
-        BookTo book = new BookTo(null, "title", "author");
-        Mockito.when(bookDao.save(book)).thenReturn(new BookTo(1L, "title", "author"));
+    	BookEntity book = new BookEntity(null, "title", "90#herr#author");
+//        Mockito.when(bookDao.save(book)).thenReturn(new BookTo(1L, "title", "author"));
+        Mockito.when(bookDao.save(book)).thenReturn(new BookEntity(1L, "title", "90#herr#author"));
         // when
-        BookTo result = bookService.saveBook(book);
+        BookTo result = bookService.saveBook(MapperToEntityTo.mapTo(book));
         // then
         Mockito.verify(bookDao).save(book);
         assertEquals(1L, result.getId().longValue());
