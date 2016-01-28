@@ -29,13 +29,15 @@ public class BookServiceImplTest {
     @Test
     public void testShouldSaveBook() {
         // given
-    	BookEntity book = new BookEntity(null, "title", "90#herr#author");
-//        Mockito.when(bookDao.save(book)).thenReturn(new BookTo(1L, "title", "author"));
-        Mockito.when(bookDao.save(book)).thenReturn(new BookEntity(1L, "title", "90#herr#author"));
+    	BookEntity bookEntity = new BookEntity(null, "title", "90#herr#author");
+//      Mockito.when(bookDao.save(book)).thenReturn(new BookTo(1L, "title", "author"));
+    	BookEntity mockedBookEntity = new BookEntity(1L, "title", "90#herr#author");
+        Mockito.when(bookDao.save(bookEntity)).thenReturn(mockedBookEntity);
         // when
-        BookTo result = bookService.saveBook(MapperToEntityTo.mapTo(book));
+        BookTo bookTo = MapperToEntityTo.mapTo(bookEntity);
+        BookTo result = bookService.saveBook(bookTo);
         // then
-        Mockito.verify(bookDao).save(book);
+        Mockito.verify(bookDao).save(bookEntity);
         assertEquals(1L, result.getId().longValue());
     }
 }

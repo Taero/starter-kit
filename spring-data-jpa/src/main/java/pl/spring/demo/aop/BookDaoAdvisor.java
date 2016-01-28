@@ -1,10 +1,10 @@
 package pl.spring.demo.aop;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+//import org.aspectj.lang.annotation.Aspect;
+//import org.aspectj.lang.annotation.Before;
 import org.springframework.aop.MethodBeforeAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
 
 import pl.spring.demo.annotation.NullableId;
 import pl.spring.demo.exception.BookNotNullIdException;
