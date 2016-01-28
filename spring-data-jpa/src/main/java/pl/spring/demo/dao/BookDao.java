@@ -1,8 +1,8 @@
 package pl.spring.demo.dao;
 
-import pl.spring.demo.to.BookEntity;
-
 import java.util.List;
+
+import pl.spring.demo.entity.BookEntity;
 
 public interface BookDao {
 

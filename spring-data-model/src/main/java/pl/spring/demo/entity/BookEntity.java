@@ -1,7 +1,9 @@
-package pl.spring.demo.to;
+package pl.spring.demo.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import pl.spring.demo.to.IdAware;
 
 public class BookEntity implements IdAware {
 	private final static String AUTHOR_SEPARATOR_FIELD = "#";
@@ -12,6 +14,8 @@ public class BookEntity implements IdAware {
 	private List<AuthorEntity> authors;    
 
 	public BookEntity() {	
+		this.authors = new ArrayList<AuthorEntity>();
+		title = "";
 	}
 
 	public BookEntity(Long id, String title, String authors) {
@@ -60,6 +64,7 @@ public class BookEntity implements IdAware {
 	}
 
 	private void addAuthor(AuthorEntity author) {
+		
 		if (!authors.contains(author))
 			authors.add(author);
 	}

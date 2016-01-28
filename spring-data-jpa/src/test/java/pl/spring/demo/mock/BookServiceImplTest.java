@@ -7,9 +7,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import pl.spring.demo.dao.BookDao;
+import pl.spring.demo.entity.BookEntity;
 import pl.spring.demo.mapper.MapperToEntityTo;
 import pl.spring.demo.service.impl.BookServiceImpl;
-import pl.spring.demo.to.BookEntity;
 import pl.spring.demo.to.BookTo;
 
 import static org.junit.Assert.assertEquals;

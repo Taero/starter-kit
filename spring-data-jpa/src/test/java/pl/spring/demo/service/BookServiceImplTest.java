@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import pl.spring.demo.entity.BookEntity;
 import pl.spring.demo.exception.BookNotNullIdException;
 import pl.spring.demo.mapper.MapperToEntityTo;
-import pl.spring.demo.to.BookEntity;
 import pl.spring.demo.to.BookTo;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class BookServiceImplTest {
         // then
         assertNotNull(allBooks);
         assertFalse(allBooks.isEmpty());
-        assertEquals(8, allBooks.size());
+        assertEquals(9, allBooks.size());
     }
 
     @Test
@@ -64,6 +65,20 @@ public class BookServiceImplTest {
         fail("test should throw BookNotNullIdException");
     }
 
+    @Test
+    public void testShouldSetIdToBook() {
+        // given
+        final BookEntity bookToSave = new BookEntity();
+        bookToSave.addAuthor("7#Franek#Kimono");
+        bookToSave.setTitle("Jestem karate mistrz");
+        // when
+        bookService.saveBook(MapperToEntityTo.mapTo(bookToSave));
+        List<BookTo> booksTo = bookService.findBooksByAuthor("Kimono");
+        // then
+        assertEquals(1, booksTo.size());
+        assertNotNull(booksTo.get(0).getId());
+    }
+    
     @Test
     public void testShouldFindTwoBooksByTitle() {
     	// given

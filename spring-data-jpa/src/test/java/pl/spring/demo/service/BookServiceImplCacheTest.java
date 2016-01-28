@@ -10,10 +10,10 @@ import org.springframework.cache.CacheManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.spring.demo.dao.BookDao;
+import pl.spring.demo.entity.BookEntity;
 import pl.spring.demo.exception.BookNotNullIdException;
 import pl.spring.demo.mapper.MapperToEntityTo;
 import pl.spring.demo.to.BookTo;
-import pl.spring.demo.to.BookEntity;
 
 import java.util.Arrays;
 import java.util.List;
