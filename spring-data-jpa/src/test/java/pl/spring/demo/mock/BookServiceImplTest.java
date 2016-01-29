@@ -2,10 +2,14 @@ package pl.spring.demo.mock;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import pl.spring.demo.dao.BookDao;
 import pl.spring.demo.entity.BookEntity;
 import pl.spring.demo.mapper.MapperToEntityTo;
@@ -29,15 +33,14 @@ public class BookServiceImplTest {
     @Test
     public void testShouldSaveBook() {
         // given
-    	BookEntity bookEntity = new BookEntity(null, "title", "90#herr#author");
+        BookTo bookTo = new BookTo(null, "title", "90#herr#author");
 //      Mockito.when(bookDao.save(book)).thenReturn(new BookTo(1L, "title", "author"));
     	BookEntity mockedBookEntity = new BookEntity(1L, "title", "90#herr#author");
-        Mockito.when(bookDao.save(bookEntity)).thenReturn(mockedBookEntity);
+        Mockito.when(bookDao.save(MapperToEntityTo.mapEntity(bookTo))).thenReturn(mockedBookEntity);
         // when
-        BookTo bookTo = MapperToEntityTo.mapTo(bookEntity);
         BookTo result = bookService.saveBook(bookTo);
         // then
-        Mockito.verify(bookDao).save(bookEntity);
+        Mockito.verify(bookDao).save(MapperToEntityTo.mapEntity(bookTo));
         assertEquals(1L, result.getId().longValue());
     }
 }
